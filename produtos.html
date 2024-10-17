@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="pruduto.css">
+    <link rel="stylesheet" href="produto.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>Página de Produtos</title>
 </head>
@@ -14,54 +14,58 @@
         <div class="logo">Estilo Digital</div>
         <nav>
             <ul>
-                <li><a href="index.html">Inicio</a></li>
+                <li><a href="index.html">Início</a></li>
                 <li><a href="produtos.html">Produtos</a></li>
                 <li><a href="sobre.html">Sobre</a></li>
                 <li><a href="contato.html">Contato</a></li>
             </ul>
         </nav>
     </header>
+
     <div class="container">
         <h1>Nossos Produtos</h1>
-        <div class="product">
-            <img src="./img/produtos/smart watch/produto 4.jpeg" alt="Produto 1">
-            <h2>smartwatch</h2>
+
+        <div class="product" data-id="1">
+            <img src="./img/produtos/smart watch/produto 4.jpeg" alt="Smartwatch">
+            <h2>Smartwatch</h2>
             <p>Preço: R$ 99,99</p>
-            <p>Airpods</p>
-            <P>Fone sem Wireless, Bluetooth, prático, discreto, ideal para o dia-a-dia de pessoas que precisam de praticidade e rapidez. </P>
-            <button>Comprar</button>
+            <button class="add-to-cart">Adicionar ao Carrinho</button>
         </div>
 
-        <div class="product">
-            <img src="./img/produtos/smart watch/produto 1.jpeg" alt="Produto 2">
-            <h2>smartwatch</h2>
+        <div class="product" data-id="2">
+            <img src="./img/produtos/smart watch/produto 1.jpeg" alt="Smartwatch">
+            <h2>Smartwatch Premium</h2>
             <p>Preço: R$ 129,99</p>
-            <p>Airpods</p>
-            <P>Fone sem Wireless, Bluetooth, prático, discreto, ideal para o dia-a-dia de pessoas que precisam de praticidade e rapidez.</P>
-            <button>Comprar</button>
+            <button class="add-to-cart">Adicionar ao Carrinho</button>
         </div>
 
-        <div class="product">
-            <img src="./img/produtos 2/fone gamer normal/produto 4.jpeg"alt="Produto 3">
-            <h2>Fone De Ouvido Bluetooth</h2>
+        <div class="product" data-id="3">
+            <img src="./img/produtos 2/fone gamer normal/produto 4.jpeg" alt="Fone Gamer">
+            <h2>Fone de Ouvido Bluetooth</h2>
             <p>Preço: R$ 79,99</p>
-            <p>Fone De Ouvido Bluetooth</p>
-            <P>Desfrute de música ininterrupta com os incríveis fones de ouvido . Com conectividade Bluetooth, você desfrutará de até 6 horas de som poderoso e envolvente.</P>
-            <button>Comprar</button>
+            <button class="add-to-cart">Adicionar ao Carrinho</button>
         </div>
-        
-        <div class="product">
-            <img src="./img/produtos 2/airpods/produto 1.jpeg" alt="Produto 4" height="400" width="400">
+
+        <div class="product" data-id="4">
+            <img src="./img/produtos 2/airpods/produto 1.jpeg" alt="Airpods" height="400" width="400">
             <h2>Airpods</h2>
             <p>Preço: R$ 49,99</p>
-            <p>Airpods</p>
-            <P>Fone sem Wireless, Bluetooth, prático, discreto, ideal para o dia-a-dia de pessoas que precisam de praticidade e rapidez. </P>
-            <button>Comprar</button>
+            <button class="add-to-cart">Adicionar ao Carrinho</button>
         </div>
     </div>
+
+    <div id="cart">
+        <h2>Carrinho de Compras</h2>
+        <ul id="cart-items"></ul>
+        <p id="total">Total: R$ 0,00</p>
+        <button id="checkout">Finalizar Compra</button>
+    </div>
+
     <footer>
-        <p>&copy; 2024 Estilo Digital. Todos os dieitos reservados.</p>
+        <p>&copy; 2024 Estilo Digital. Todos os direitos reservados.</p>
     </footer>
+
     <script src="script.js"></script>
 </body>
+
 </html>

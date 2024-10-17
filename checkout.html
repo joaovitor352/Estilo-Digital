@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento</title>
+    <link rel="stylesheet" href="checkout.css">
+</head>
+
+<body>
+    <header>
+        <div class="logo">Estilo Digital</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="produtos.html">Produtos</a></li>
+                <li><a href="sobre.html">Sobre</a></li>
+                <li><a href="contato.html">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Pagamento</h1>
+        <form id="payment-form">
+            <label for="payment-method">Método de Pagamento:</label>
+            <select id="payment-method" required>
+                <option value="cartao">Cartão de Crédito</option>
+                <option value="pix">PIX</option>
+            </select>
+
+            <div id="card-info">
+                <label for="name">Nome Completo:</label>
+                <input type="text" id="name" required>
+
+                <label for="card-number">Número do Cartão:</label>
+                <input type="text" id="card-number" required placeholder="0000 0000 0000 0000">
+
+                <label for="expiry">Validade (MM/AA):</label>
+                <input type="text" id="expiry" required placeholder="MM/AA">
+
+                <label for="cvv">CVV:</label>
+                <input type="text" id="cvv" required placeholder="123">
+            </div>
+
+            <div id="pix-info" style="display: none;">
+                <p>Use o QR Code abaixo para realizar o pagamento via PIX:</p>
+                <img src="pix-qr-code.png" alt="QR Code PIX" width="200">
+            </div>
+
+            <button type="submit">Finalizar Pagamento</button>
+        </form>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Estilo Digital. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        const paymentMethodSelect = document.getElementById("payment-method");
+        const cardInfo = document.getElementById("card-info");
+        const pixInfo = document.getElementById("pix-info");
+
+        paymentMethodSelect.addEventListener("change", () => {
+            if (paymentMethodSelect.value === "pix") {
+                cardInfo.style.display = "none";
+                pixInfo.style.display = "block";
+            } else {
+                cardInfo.style.display = "block";
+                pixInfo.style.display = "none";
+            }
+        });
+
+        document.getElementById("payment-form").addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            if (paymentMethodSelect.value === "pix") {
+                alert("Pagamento via PIX realizado com sucesso!");
+            } else {
+                alert("Pagamento com cartão realizado com sucesso!");
+            }
+            
+            window.location.href = "index.html"; // Redireciona para a página inicial após o pagamento
+        });
+    </script>
+</body>
+
+</html>
