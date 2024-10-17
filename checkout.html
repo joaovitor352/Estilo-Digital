@@ -24,12 +24,13 @@
 
     <div class="container">
         <h1>Pagamento</h1>
-        <form id="payment-form">
+        <form id="payment-form" action="backend.php" method="POST" enctype="multipart/form-data">
             <label for="payment-method">Método de Pagamento:</label>
-            <select id="payment-method" required>
+            <select id="payment-method" name="paymentMethod" required>
                 <option value="cartao">Cartão de Crédito</option>
                 <option value="pix">PIX</option>
             </select>
+
 
             <div id="card-info">
                 <label for="name">Nome Completo:</label>
