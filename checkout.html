@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pagamento</title>
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2.4.1/dist/email.min.js"></script>
     <link rel="stylesheet" href="checkout.css">
 </head>
 
@@ -42,11 +43,23 @@
 
                 <label for="cvv">CVV:</label>
                 <input type="text" id="cvv" required placeholder="123">
+
+                <label for="installments">Número de Parcelas:</label>
+                <select id="installments" required>
+                    <option value="1">1x (sem juros)</option>
+                    <option value="2">2x</option>
+                    <option value="3">3x</option>
+                    <option value="4">4x</option>
+                    <option value="5">5x</option>
+                    <option value="6">6x</option>
+                </select>
             </div>
 
             <div id="pix-info" style="display: none;">
                 <p>Use o QR Code abaixo para realizar o pagamento via PIX:</p>
                 <img src="pix-qr-code.png" alt="QR Code PIX" width="200">
+                <label for="proof">Anexe o comprovante:</label>
+                <input type="file" id="proof" required>
             </div>
 
             <button type="submit">Finalizar Pagamento</button>
@@ -58,9 +71,12 @@
     </footer>
 
     <script>
+        emailjs.init("SEU_USER_ID");  // Substitua pelo seu User ID do EmailJS
+
         const paymentMethodSelect = document.getElementById("payment-method");
         const cardInfo = document.getElementById("card-info");
         const pixInfo = document.getElementById("pix-info");
+        const proofInput = document.getElementById("proof");
 
         paymentMethodSelect.addEventListener("change", () => {
             if (paymentMethodSelect.value === "pix") {
@@ -76,12 +92,33 @@
             event.preventDefault();
 
             if (paymentMethodSelect.value === "pix") {
-                alert("Pagamento via PIX realizado com sucesso!");
+                const file = proofInput.files[0];
+                const reader = new FileReader();
+
+                reader.onload = function (e) {
+                    const proofBase64 = e.target.result;
+
+                    const templateParams = {
+                        to_name: "JV",
+                        message: "Comprovante de pagamento via PIX.",
+                        proof: proofBase64,
+                    };
+
+                    emailjs.send("SEU_SERVICE_ID", "SEU_TEMPLATE_ID", templateParams)
+                        .then(() => {
+                            alert("Comprovante enviado com sucesso!");
+                            window.location.href = "index.html";
+                        }, (error) => {
+                            alert("Erro ao enviar o comprovante: " + error.text);
+                        });
+                };
+
+                reader.readAsDataURL(file);
             } else {
-                alert("Pagamento com cartão realizado com sucesso!");
+                const installments = document.getElementById("installments").value;
+                alert(`Pagamento com cartão realizado em ${installments}x com sucesso!`);
+                window.location.href = "index.html";
             }
-            
-            window.location.href = "index.html"; // Redireciona para a página inicial após o pagamento
         });
     </script>
 </body>
